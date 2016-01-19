@@ -43,11 +43,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (health <= 0 && !dead)
         {
             death();
-
-            if(gameObject.tag == "Player" || gameObject.tag == "Base")
-            {
-                print("killed by mayro minion");
-            }
         }
     }
 
