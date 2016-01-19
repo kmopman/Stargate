@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e762a0fcac0a25243b4f2f348cc335d3
+timeCreated: 1452995454
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _healthPickup: {fileID: 100870, guid: d5fafcbb6079ea947a9addecfbea41ed, type: 2}
+  - _explosionSFX: {fileID: 111266, guid: 9e715880aff9b724cb7b745b470f1b84, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

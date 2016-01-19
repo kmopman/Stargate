@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bc6603e70e0b839408ef2c250879fc1f
+timeCreated: 1452985532
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _deathCam: {fileID: 108508, guid: 640896d0b08c78441a541c47ea1ec093, type: 2}
+  - _healthPickup: {fileID: 100870, guid: d5fafcbb6079ea947a9addecfbea41ed, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
