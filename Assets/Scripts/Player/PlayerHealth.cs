@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : LivingEntity//imports the living entity script
 {
+    //GameObject
     [SerializeField]
     private GameObject _deathCam;
 
@@ -11,11 +12,14 @@ public class PlayerHealth : LivingEntity//imports the living entity script
 
     [SerializeField]
     private GameObject _baseObject;
+    //GameObject
 
-
+    //Floats
     [SerializeField]
     private float _secondsToWait = 4f;
     private float _HpScaler;
+    //Floats
+
 
     protected override void Start()
     {

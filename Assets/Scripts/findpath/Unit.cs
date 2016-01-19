@@ -3,13 +3,25 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
+    //Transform
+    public Transform target;
+    //Transform
 
-	public Transform target;
-	float speed = 10;
-	Vector3[] path;
-	int targetIndex;
+    //Float
+    float speed = 10;
+    //Float
 
-	void Start() {
+    //Vector3
+    Vector3[] path;
+    //Vector3
+
+    //Int
+    int targetIndex;
+    //Int
+
+
+	void Start() 
+    {
 		PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 	}
 
@@ -21,15 +33,21 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	IEnumerator FollowPath() {
+	IEnumerator FollowPath() 
+    {
 		Vector3 currentWaypoint = path[0];
 
-		while (true) {
-			if (transform.position == currentWaypoint) {
+		while (true)
+        {
+			if (transform.position == currentWaypoint) 
+            {
 				targetIndex ++;
-				if (targetIndex >= path.Length) {
+				if (targetIndex >= path.Length) 
+                
+                {
 					yield break;
 				}
+
 				currentWaypoint = path[targetIndex];
 			}
 
@@ -39,16 +57,21 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	public void OnDrawGizmos() {
-		if (path != null) {
-			for (int i = targetIndex; i < path.Length; i ++) {
+	public void OnDrawGizmos() 
+    {
+		if (path != null) 
+        {
+			for (int i = targetIndex; i < path.Length; i ++) 
+            {
 				Gizmos.color = Color.black;
 				Gizmos.DrawCube(path[i], Vector3.one);
 
-				if (i == targetIndex) {
+				if (i == targetIndex)
+                {
 					Gizmos.DrawLine(transform.position, path[i]);
 				}
-				else {
+				else 
+                {
 					Gizmos.DrawLine(path[i-1],path[i]);
 				}
 			}

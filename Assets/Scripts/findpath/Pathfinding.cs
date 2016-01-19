@@ -6,43 +6,42 @@ using System;
 
 public class Pathfinding : MonoBehaviour {
 	
+    //Scripts
+    PathRequestManager requestManager;
+    Grid grid;//get grid script
+    //Scripts
 
-	PathRequestManager requestManager;
-	Grid grid;
 
-	void Awake() {
+    void Awake() {
 		requestManager = GetComponent<PathRequestManager>();
-		grid = GetComponent<Grid>();
-	}
+		grid = GetComponent<Grid>();//gets the grit info
+    }
 	
 
-	public void StartFindPath(Vector3 startPos, Vector3 targetPos) {
-		StartCoroutine(FindPath(startPos,targetPos));
+	public void StartFindPath(Vector3 startPosition, Vector3 targetPosition) {
+		StartCoroutine(FindPath(startPosition,targetPosition));
 	}
 
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos) {
-
-		Stopwatch sw = new Stopwatch();
-		sw.Start();
-
+	IEnumerator FindPath(Vector3 startPosition, Vector3 targetPosition)//here we get 2 positions from the game and check on wich node they are, we do that with NodeFromWorldPoint wich we have in the grid script
+    {
 		Vector3[] waypoints = new Vector3[0];
 		bool pathSuccess = false;
 
-		Node startNode = grid.NodeFromWorldPoint(startPos);
-		Node targetNode = grid.NodeFromWorldPoint(targetPos);
+		Node startNode = grid.NodeFromWorldPoint(startPosition);//this is going to be the startng point f the path
+        Node targetNode = grid.NodeFromWorldPoint(targetPosition);//this wil be the  base or player etc, just the target
 
-		if (startNode.walkable && targetNode.walkable) {
-			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-			HashSet<Node> closedSet = new HashSet<Node>();
-			openSet.Add(startNode);
+        if (startNode.walkable && targetNode.walkable) {
+			Heap<Node> openSet = new Heap<Node>(grid.MaxSize);//list of nodes that havent been checked yet
+            HashSet<Node> closedSet = new HashSet<Node>();//a list for the nodes that have been checked
+            openSet.Add(startNode);//the verry first node that wil be checked, this is the starting position
 
-			while (openSet.Count > 0) {
-				Node currentNode = openSet.RemoveFirst();
-				closedSet.Add(currentNode);
+            while (openSet.Count > 0)//as long as there are nodes to be checked, go on :)
+            {
+				Node currentNode = openSet.RemoveFirst();//first to be checked a
+                closedSet.Add(currentNode);
 
-				if (currentNode == targetNode) {
-					sw.Stop();
-					//print ("Path found: " + sw.ElapsedMilliseconds + " ms");
+				if (currentNode == targetNode)
+                {
 					pathSuccess = true;
 					break;
 				}
@@ -52,9 +51,9 @@ public class Pathfinding : MonoBehaviour {
 						continue;
 					}
 
-					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
-						neighbour.gCost = newMovementCostToNeighbour;
+					int newCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+					if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
+						neighbour.gCost = newCostToNeighbour;
 						neighbour.hCost = GetDistance(neighbour, targetNode);
 						neighbour.parent = currentNode;
 
@@ -72,7 +71,8 @@ public class Pathfinding : MonoBehaviour {
 
 	}
 
-	Vector3[] RetracePath(Node startNode, Node endNode) {
+	Vector3[] RetracePath(Node startNode, Node endNode)//function to.. retrace its path
+    {
 		List<Node> path = new List<Node>();
 		Node currentNode = endNode;
 
@@ -100,13 +100,14 @@ public class Pathfinding : MonoBehaviour {
 		return waypoints.ToArray();
 	}
 
-	int GetDistance(Node nodeA, Node nodeB) {
-		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-		int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-		if (dstX > dstY)
-			return 14*dstY + 10* (dstX-dstY);
-		return 14*dstX + 10 * (dstY-dstX);
+	int GetDistance(Node firstNode, Node secondNode)//here i calculate the distance between 2 nodes(node A and B
+    {
+		int distanceX = Mathf.Abs(firstNode.gridX - secondNode.gridX);//here i check the x distance
+        int distanceY = Mathf.Abs(firstNode.gridY - secondNode.gridY);//here i check the y distance
+        //the biggest number - the smaller 1 gives the ammount of horizontal steps that you have to do, like y=7 x = 2 means 5 (5*10)steps horizontal and 2 steps diagonal(2*14)
+        if (distanceX > distanceY)
+			return 14*distanceY + 10* (distanceX-distanceY);
+		return 14*distanceX + 10 * (distanceY-distanceX);
 	}
 
 

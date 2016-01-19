@@ -5,13 +5,21 @@ using System;
 
 public class PathRequestManager : MonoBehaviour {
 
-	Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
-	PathRequest currentPathRequest;
+    //Generic
+    Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
+    static PathRequestManager instance;
+    //Generic
 
-	static PathRequestManager instance;
-	Pathfinding pathfinding;
+    //Scripts
+    Pathfinding pathfinding;
+    PathRequest currentPathRequest;
+    //Scripts
+	
 
-	bool isProcessingPath;
+    //Bool
+    private bool _ProcessingPath;
+    //Bool
+	
 
 	void Awake() {
 		instance = this;
@@ -25,16 +33,16 @@ public class PathRequestManager : MonoBehaviour {
 	}
 
 	void TryProcessNext() {
-		if (!isProcessingPath && pathRequestQueue.Count > 0) {
+		if (!_ProcessingPath && pathRequestQueue.Count > 0) {
 			currentPathRequest = pathRequestQueue.Dequeue();
-			isProcessingPath = true;
+			_ProcessingPath = true;
 			pathfinding.StartFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd);
 		}
 	}
 
 	public void FinishedProcessingPath(Vector3[] path, bool success) {
 		currentPathRequest.callback(path,success);
-		isProcessingPath = false;
+		_ProcessingPath = false;
 		TryProcessNext();
 	}
 

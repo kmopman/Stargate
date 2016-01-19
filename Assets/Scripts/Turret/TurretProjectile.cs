@@ -3,9 +3,12 @@ using System.Collections;
 
 public class TurretProjectile : MonoBehaviour
 {
-
+    //LayerMasks
     [SerializeField]
     private LayerMask _collisionMask;//layer wich the projectile checks for
+    //LayerMasks
+
+    //Float
 
     [SerializeField]
     private float _maxRange = 100;//the max range the bullet will go
@@ -14,7 +17,8 @@ public class TurretProjectile : MonoBehaviour
     private float _projectileSpeed = 10;//the speed of the projectile >_>
     [SerializeField]
     private float _damage = 1;//the ammount of damg this thing does
-
+    //Float
+    
     //Vector3
     private Vector3 _turretRotation;
     //Vector3
@@ -33,7 +37,6 @@ public class TurretProjectile : MonoBehaviour
     void Start()
     {
         _rangeTraveled = 0;
-        if (this.gameObject.name == "HeavyBullet")
         _turretRotation = _getTurretRotation.gameObject.transform.TransformDirection(Vector3.forward);
     }
     void Update()

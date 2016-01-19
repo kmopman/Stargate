@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
     private GameObject _htpButton;
     [SerializeField]
     private GameObject _creditsButton;
+    //GameObject
 
     void Start()
     {

@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Node : IHeapItem<Node> {
 	
-	public bool walkable;
-	public Vector3 worldPosition;
-	public int gridX;
-	public int gridY;
+	public bool walkable;//can you walk on this node or not
+    public Vector3 worldPosition;//the position of the node, kinda importand
+    public int gridX;//xpos of the current node
+    public int gridY;//ypos of the current node
 
-	public int gCost;
-	public int hCost;
-	public Node parent;
-	int heapIndex;
+    public int gCost;//the ammount of units its from the starting point
+    public int hCost;//the ammount of units its from the target
+    public Node parent;
+	private int _heapIndex;
 	
 	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;
@@ -28,10 +28,10 @@ public class Node : IHeapItem<Node> {
 
 	public int HeapIndex {
 		get {
-			return heapIndex;
+			return _heapIndex;
 		}
 		set {
-			heapIndex = value;
+			_heapIndex = value;
 		}
 	}
 

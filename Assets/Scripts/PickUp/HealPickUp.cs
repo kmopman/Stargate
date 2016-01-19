@@ -3,17 +3,24 @@ using System.Collections;
 
 public class HealPickUp : MonoBehaviour
 {
+    //Floats
     [SerializeField]
-    private float _addedHp = -1f;//the ammount of health added(its in minus becouse it uses the damg system but reversed... programming is just like magic)
-
-    [SerializeField]
-    private AudioSource _pickupSFX;
-
+    private float _addedHp = -1f;
+    //The amount of health added(it's in minus becouse it uses the damage system, but reversed... programming is just like magic)
     [SerializeField]
     private float _secondsUntilRemoval = 10f;
     private float _blinkSeconds = .5f;
+    //Floats
 
+    //Bool
     private bool _isPlayingSFX = false;
+    //Bool
+
+    //AudioSource
+    [SerializeField]
+    private AudioSource _pickupSFX;
+    //AudioSource
+   
 
     void Update()
     {

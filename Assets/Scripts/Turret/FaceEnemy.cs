@@ -3,6 +3,12 @@ using System.Collections;
 
 public class FaceEnemy : MonoBehaviour
 {
+    [SerializeField]
+    private float _trackingSpeed = 80f;
+    [SerializeField]
+    private GameObject targetToLookAt;
+    Vector3 m_lastKnownPosition = Vector3.zero;
+    Quaternion m_lookAtRotation;
 
     //LayerMasks
     [SerializeField]
@@ -12,27 +18,17 @@ public class FaceEnemy : MonoBehaviour
     //Floats
     [SerializeField]
     private float _targetRadius = 5f;
-     [SerializeField]
-    private float _trackingSpeed = 80f;
     //Floats
 
     //GameObjects
-     [SerializeField]
-    private GameObject targetToLookAt;
     private GameObject _closestEnemy;
     //GameObjects
-    
-    //Vector3
-    Vector3 m_lastKnownPosition = Vector3.zero;
-    //Vector3   
-   
-    //Quaternion
-    Quaternion m_lookAtRotation;
-    //Quaternion
 
 
     void Update()
     {
+        
+
         if (this.gameObject.tag == "Enemy")
             LookAtTarget();
         else

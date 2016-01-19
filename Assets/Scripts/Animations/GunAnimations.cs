@@ -5,7 +5,7 @@ public class GunAnimations : MonoBehaviour {
 
     //GameObjects
     [SerializeField]
-    private GameObject _mainCamera; //Drags the camera
+    private GameObject _mainCamera; //Drag and drop the Main Camera.
     //GameObjects
 
     //Floats
@@ -21,12 +21,12 @@ public class GunAnimations : MonoBehaviour {
     //Camera
 
     //Bools
-    private bool _cameraZoomIn = false;
+    private bool _cameraZoomIn = false; //Is the camera zoomed in?
     //Bools
 
     //Animator
-    Animator anim;
-    Animator camAnim;
+    Animator anim; //Grabs the gun's animator.
+    Animator camAnim; //Grabs the cam's animator.
     //Animator
 
     //AudioSource
